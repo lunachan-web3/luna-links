@@ -279,3 +279,6 @@ main {
         text-align: center;
     }
 }
+/* --- Discord カードがクリックできない対策 --- */
+.card { pointer-events: auto; }   /* aタグ自身はクリック可 */
+.card * { pointer-events: none; } /* 子要素はクリックを無視 */
