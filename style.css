@@ -282,3 +282,6 @@ main {
 /* --- Discord カードがクリックできない対策 --- */
 .card { pointer-events: auto; }   /* aタグ自身はクリック可 */
 .card * { pointer-events: none; } /* 子要素はクリックを無視 */
+/* --- Discord カードがクリックできない対策 --- */
+.card { pointer-events: auto; }   /* <a> 自体はクリック可 */
+.card * { pointer-events: none; } /* 子要素はクリックを無視 */
