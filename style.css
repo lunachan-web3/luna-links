@@ -1,0 +1,281 @@
+/* style.css */
+:root {
+    --primary-color: #67d0e8;
+    --secondary-color: #a568ff;
+    --accent-color: #ff3dbd;
+    --dark-bg-start: #14121f;
+    --dark-bg-end: #1e1a28;
+    --text-color: #ffffff;
+    --font-family: 'Noto Sans JP', sans-serif;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background: linear-gradient(135deg, var(--dark-bg-start), var(--dark-bg-end));
+    color: var(--text-color);
+    overflow-x: hidden;
+    position: relative;
+}
+
+.hexagon-overlay, .glitch-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.hexagon-overlay {
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="hex" patternUnits="userSpaceOnUse" width="70" height="121.24"><path d="M35 0L70 20.2v40.4L35 80.8 0 60.6V20.2z" fill="none" stroke="rgba(103, 208, 232, 0.05)"/></pattern></defs><rect width="100%" height="100%" fill="url(%23hex)"/></svg>');
+}
+
+.glitch-overlay::before, .glitch-overlay::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    animation: glitch 4s infinite linear alternate-reverse;
+}
+
+.glitch-overlay::before {
+    box-shadow: 0 1px 0 var(--primary-color), 0 -1px 0 var(--accent-color);
+    animation-delay: -2s;
+}
+
+.glitch-overlay::after {
+    box-shadow: 0 1px 0 var(--secondary-color), 0 -1px 0 var(--primary-color);
+}
+
+@keyframes glitch {
+    0% { transform: translate(2px, 1px) rotate(0.5deg); }
+    25% { transform: translate(-2px, -1px) rotate(-0.5deg); }
+    50% { transform: translate(1px, -2px) rotate(0.5deg); }
+    75% { transform: translate(-1px, 2px) rotate(-0.5deg); }
+    100% { transform: translate(2px, 1px) rotate(0.5deg); }
+}
+
+#header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    background: rgba(20, 18, 31, 0.8);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(103, 208, 232, 0.2);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    text-shadow: 0 0 5px var(--primary-color);
+}
+
+main {
+    padding: 0 2rem;
+}
+
+#hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-top: 80px; /* for sticky header */
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--primary-color);
+    object-fit: cover;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0 15px var(--primary-color), 0 0 25px var(--secondary-color) inset;
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 0 8px var(--accent-color);
+}
+
+.hero-subtitle {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+}
+
+.scroll-down {
+    color: var(--primary-color);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40% { transform: translateY(-10px); }
+    60% { transform: translateY(-5px); }
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 4rem 0 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+    display: inline-block;
+}
+
+#links, #about {
+    max-width: 960px;
+    margin: 4rem auto;
+    text-align: center;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--primary-color);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: var(--text-color);
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: var(--accent-color);
+    box-shadow: 0 8px 25px rgba(255, 61, 189, 0.2);
+}
+
+.card-icon svg {
+    width: 48px;
+    height: 48px;
+    fill: var(--primary-color);
+    transition: fill 0.3s;
+}
+
+.card:hover .card-icon svg {
+    fill: var(--accent-color);
+}
+
+.card-content {
+    text-align: left;
+}
+
+.card-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.25rem;
+}
+
+.card-content p {
+    color: #ccc;
+}
+
+.about-container {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    text-align: left;
+}
+
+.about-image {
+    width: 300px;
+    border-radius: 12px;
+    border: 3px solid var(--secondary-color);
+}
+
+.about-text h3 {
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.about-text p {
+    line-height: 1.8;
+}
+
+#footer {
+    text-align: center;
+    padding: 2rem;
+    margin-top: 4rem;
+    border-top: 1px solid rgba(103, 208, 232, 0.2);
+}
+
+@media (max-width: 768px) {
+    .nav-menu {
+        display: none; /* Simple hide for now, can be replaced with a burger menu */
+    }
+    .hero-title { font-size: 2rem; }
+    .hero-subtitle { font-size: 1rem; }
+}
+
+@media (max-width: 600px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+    .about-container {
+        flex-direction: column;
+    }
+    .about-image {
+        width: 100%;
+        max-width: 300px;
+    }
+    .about-text {
+        text-align: center;
+    }
+}
